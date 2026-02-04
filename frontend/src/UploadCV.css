@@ -1,0 +1,82 @@
+/* Contenedor principal centrado y adaptable */
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;    /* centra verticalmente */
+  min-height: 100vh;          /* altura completa de la ventana */
+  width: 100%;                /* ancho completo */
+  max-width: 100vw;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+
+  /* Fondo y texto por defecto (tema claro) */
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+/* Drag & drop */
+.dropzone {
+  border: 3px dashed #4F46E5; /* borde visible azul */
+  width: 90%;                 /* ancho adaptable a ventana */
+  max-width: 500px;           /* ancho máximo */
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #1f2937;
+  transition: border-color 0.3s, background-color 0.2s, color 0.2s;
+}
+
+.dropzone.active {
+  border-color: #2563eb;      /* borde más brillante al arrastrar */
+  background-color: #e0e7ff;  /* fondo ligeramente azul al arrastrar */
+}
+
+/* Archivo seleccionado */
+.selected-file {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Botón de envío */
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4F46E5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #3730a3;
+}
+
+/* Soporte para tema oscuro */
+@media (prefers-color-scheme: dark) {
+  .upload-container {
+    background-color: #111827; /* fondo oscuro */
+    color: #f9fafb;            /* texto claro */
+  }
+
+  .dropzone {
+    background-color: #1f2937;  /* fondo dropzone oscuro */
+    color: #f9fafb;             /* texto claro dentro */
+    border-color: #60a5fa;      /* borde azul visible */
+  }
+
+  .dropzone.active {
+    border-color: #93c5fd;
+    background-color: #111827;  /* fondo al arrastrar */
+  }
+}
