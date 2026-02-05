@@ -18,12 +18,32 @@ const UploadCV: React.FC = () => {
         }
     });
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!cv) return;
-        //Send to back using fetch
-        console.log("Enviando archivo:", cv.name);
-    };
+        
+        const formData = new FormData();
+        formData.append("file", cv);
 
+        try {
+            const res = await fetch("/upload-cv", {
+                method: "POST",
+                body: formData,
+            });
+            if (!res.ok) {
+                throw new Error(`Error al subir el CV: ${res.statusText}`);
+            }
+
+            const data = await res.json();
+            console.log("Respuesta del backend:", data);
+
+            // Aquí podrías actualizar un estado para mostrar ofertas, etc.
+            // setUploadedCV(data.filename);
+        }catch (err) {
+        console.error("Error al subir CV:", err);
+        alert("Error al subir CV, revisa la consola");
+        }
+    };
+        
     return (
         //In a future I will have a "change language" option
         <div className="upload-container">
