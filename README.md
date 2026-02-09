@@ -41,7 +41,3 @@ ai_job_application_matcher/
     └── eslint.config.js         # ESLint configuration
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> development

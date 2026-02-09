@@ -8,15 +8,6 @@ nltk.download('stopwords')
 # words in English that may not carry significant meaning
 stop_words = set(stopwords.words('english'))
 
-<<<<<<< HEAD
-def clean_text(text: str) -> str:
-    text = text.lower()  # Convert to lowercase
-    text = re.sub(r"[^a-zA-Z\s]", "", text)  # Remove punctuation and special characters
-    text = re.sub(r"\s+", " ", text).strip()  # Remove extra whitespace
-
-    words = [w for w in text.split() if w not in stop_words]  # Remove stop words
-    return " ".join(words)  # Join the cleaned words back into a single string
-=======
 def clean_text(text):
     # Convert text to lowercase
     text = text.lower()
@@ -34,4 +25,3 @@ def clean_text(text):
     cleaned_text = " ".join(words)
     
     return cleaned_text
->>>>>>> development
