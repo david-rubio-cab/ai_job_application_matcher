@@ -2,6 +2,8 @@ from fastapi import FastAPI, UploadFile, File
 from pathlib import Path
 
 from app.utils.pdf_parser import extract_info_from_pdf
+from app.preprocessing.text_cleaner import clean_text
+from app.services.matching_offers import find_matching_offers
 
 # app is my FastAPI instance, which will be used as a server
 # to handle incoming requests
@@ -25,10 +27,18 @@ async def upload_cv(file: UploadFile = File(...)):
         f.write(content)  # Write the content to the specified path
 
         # Extract text from the uploaded PDF
-        pdf_text = extract_info_from_pdf(file_path)  
+        pdf_text = extract_info_from_pdf(file_path)
+
+        # Clean the extracted text
+        cleaned_text = clean_text(pdf_text)  
+
+        # Match the cleaned text with job offers and return the top matches
+        top_offers = find_matching_offers(cleaned_text, top_n=10)
     
     return {
         "status": "success",
         "filename": file.filename,
-        "pdf_text_preview": pdf_text[:1000]  # Only return the first 1000 characters of the PDF text
+        #"pdf_text_preview": pdf_text[:1000],  # Only return the first 1000 characters of the PDF text
+        #"cleaned_text_preview": cleaned_text[:1000],
+        "top_offers": top_offers
     }
