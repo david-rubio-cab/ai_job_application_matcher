@@ -1,3 +1,6 @@
+## Project Structure
+
+```txt
 ai_job_application_matcher/
 │
 ├── backend/
@@ -36,4 +39,6 @@ ai_job_application_matcher/
     ├── tsconfig.node.json       # TS config for Node/Vite
     ├── vite.config.ts           # Vite configuration
     └── eslint.config.js         # ESLint configuration
+
+
 
